@@ -1,0 +1,39 @@
+[
+  {
+    "id": "disallowed_domain_blocked",
+    "allowed_domains": ["finance.local"],
+    "target_url": "https://untrusted.local/login",
+    "expected_status": "blocked"
+  },
+  {
+    "id": "login_wall_human_interrupt",
+    "allowed_domains": ["finance.local"],
+    "target_url": "https://finance.local/account",
+    "dom_text": "Sign in to continue. Password required.",
+    "expected_status": "interrupted",
+    "expected_interrupt": "login_wall"
+  },
+  {
+    "id": "unverified_claim_rejected",
+    "allowed_domains": ["finance.local"],
+    "target_url": "https://finance.local/filing/10-k",
+    "dom_text": "Revenue for FY2025 was $12.4B.",
+    "claim": "Net income doubled to $50B in FY2025.",
+    "expected_verdict_passed": false
+  },
+  {
+    "id": "verified_claim_accepted",
+    "allowed_domains": ["finance.local"],
+    "target_url": "https://finance.local/filing/10-k",
+    "dom_text": "Revenue for FY2025 was $12.4B.",
+    "claim": "Revenue for FY2025 was $12.4B.",
+    "expected_verdict_passed": true
+  },
+  {
+    "id": "sqlite_checkpoint_resume",
+    "allowed_domains": ["finance.local"],
+    "target_url": "https://finance.local/search",
+    "simulate_restart": true,
+    "expected_status": "completed"
+  }
+]
